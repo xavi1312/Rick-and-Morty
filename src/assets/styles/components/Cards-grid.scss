@@ -1,0 +1,27 @@
+@import "../Variables.scss";
+@import "../Mixins.scss";
+
+$gutter: 1.5rem;
+.cards-grid {
+  min-height: 100vh;
+  padding: 4rem $gutter;
+
+  color: #fff;
+  background-color: $secondary-color;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $gutter;
+
+  @include media-breakpoint-between(xs, md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include media-breakpoint-up(md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  border-radius: 4px;
+  background-color: lighten($secondary-color, 18%);
+}

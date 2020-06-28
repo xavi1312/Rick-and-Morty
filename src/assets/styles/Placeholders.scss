@@ -1,0 +1,17 @@
+@import "./Variables.scss";
+
+%scroll-bar {
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background: transparent;
+  }
+  &::-webkit-scrollbar-track {
+    background: $secondary-color;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: $primary-color;
+  }
+}
