@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 // Utilities
 import { connect } from 'react-redux';
 import { moreCharacters } from '../actions';
+import { getCharacters } from '../utils/rickAndMortyAPI';
+import { store } from '../index';
 // Components
 import Hero from '../components/Hero';
 import CardsGrid from '../components/Cards-grid';
@@ -9,19 +11,26 @@ import Card from '../components/Card';
 // Assets
 import '../assets/styles/App.scss';
 
-const Home = props => {
+const Home = ({ characters }) => {
   useEffect(() => {
-    props.moreCharacters({});
-  }, [props]);
+    getCharacters(store.dispatch, moreCharacters);
+  }, []);
 
   return (
     <div>
       <Hero />
       <CardsGrid>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        {characters.map(card => (
+          <Card
+            key={card.id}
+            image={card.image}
+            name={card.name}
+            status={card.status}
+            species={card.species}
+            origin={card.origin}
+            location={card.location}
+          />
+        ))}
       </CardsGrid>
     </div>
   );
@@ -32,8 +41,5 @@ const mapStateToProps = state => {
     characters: state.characters,
   };
 };
-const mapDispatchToProps = {
-  moreCharacters,
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, null)(Home);

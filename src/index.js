@@ -11,7 +11,7 @@ import reducer from './reducers/reducers';
 const initialState = {
   characters: [],
 };
-const store = createStore(reducer, initialState);
+export const store = createStore(reducer, initialState);
 
 ReactDOM.render(
   <Provider store={store}>

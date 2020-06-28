@@ -1,9 +1,13 @@
+import { getCharacters } from '../utils/rickAndMortyAPI';
+
 const reducer = (state, action) => {
   switch (action.type) {
     case 'MORE_CHARACTERS':
-      state.characters.push('1');
-      console.log(state);
-      return state;
+      console.log(action.payload);
+      return {
+        ...state,
+        characters: [...state.characters, ...action.payload],
+      };
     default:
       state;
   }
