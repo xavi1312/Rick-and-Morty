@@ -22,7 +22,6 @@ const Card = props => {
     url: "https://rickandmortyapi.com/api/character/361",
     created: "2018-01-10T18:20:41.703Z",
   };
-  console.log(customProps);
   const { image, name, status, species, origin, location } = customProps;
 
   return (

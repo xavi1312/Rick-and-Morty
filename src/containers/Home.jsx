@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useEffect } from 'react';
 // Utilities
+import { connect } from 'react-redux';
+import { moreCharacters } from '../actions';
 // Components
-import Hero from "../components/Hero";
-import CardsGrid from "../components/Cards-grid";
-import Card from "../components/Card";
+import Hero from '../components/Hero';
+import CardsGrid from '../components/Cards-grid';
+import Card from '../components/Card';
 // Assets
-import "../assets/styles/App.scss";
+import '../assets/styles/App.scss';
 
-const Home = () => {
+const Home = props => {
+  useEffect(() => {
+    props.moreCharacters({});
+  }, [props]);
+
   return (
     <div>
       <Hero />
@@ -21,4 +27,13 @@ const Home = () => {
   );
 };
 
-export default Home;
+const mapStateToProps = state => {
+  return {
+    characters: state.characters,
+  };
+};
+const mapDispatchToProps = {
+  moreCharacters,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
