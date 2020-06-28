@@ -13,12 +13,9 @@ const Home = () => {
       <Hero />
       <CardsGrid>
         <Card />
-        <div className="card"></div>
-        <div className="card"></div>
-        <div className="card"></div>
-        <div className="card"></div>
-        <div className="card"></div>
-        <div className="card"></div>
+        <Card />
+        <Card />
+        <Card />
       </CardsGrid>
     </div>
   );

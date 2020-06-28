@@ -1,4 +1,5 @@
 import React from "react";
+import "../assets/styles/components/Card.scss";
 
 const Card = props => {
   const customProps = {
@@ -25,28 +26,32 @@ const Card = props => {
   const { image, name, status, species, origin, location } = customProps;
 
   return (
-    <section className="card">
+    <article className="card">
       <div className="card__header">
-        <img src={image} alt={name} />
+        <img className="card__image" src={image} alt={name} />
       </div>
       <div className="card__body">
-        <h1 className="card__title">{name}</h1>
-        <div className="card__status">
-          <div
-            className={`card__statatus-icon card__statatus-icon--${status.toLowerCase()}`}
-          ></div>
-          {status + " - " + species}
+        <div>
+          <h1 className="card__title">{name}</h1>
+          <section className="card__status">
+            <div
+              className={`card__status-icon card__status-icon--${status.toLowerCase()}`}
+            ></div>
+            {status + " - " + species}
+          </section>
+          <p className="card__last-location">
+            <span className="card__subtitle">
+              Ultima localizacion conocida:
+            </span>
+            {location.name}
+          </p>
+          <p className="card__first-seen">
+            <span className="card__subtitle">Primera aparicion:</span>
+            {origin.name}
+          </p>
         </div>
-        <p className="card__last-location">
-          <span className="card__subtitle">Ultima localizacion conocida:</span>
-          {location.name}
-        </p>
-        <p className="card__first-seen">
-          <span className="card__subtitle">Primera aparicion:</span>
-          {origin.name}
-        </p>
       </div>
-    </section>
+    </article>
   );
 };
 
