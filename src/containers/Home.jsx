@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 // Utilities
 import { connect } from 'react-redux';
-import { moreCharacters } from '../actions';
-import { getCharacters } from '../utils/rickAndMortyAPI';
-import { store } from '../index';
+import { fetchCharacters } from '../actions';
 // Components
 import Hero from '../components/Hero';
 import CardsGridController from '../components/Cards-grid-controller';
@@ -13,16 +11,18 @@ import Card from '../components/Card';
 import '../assets/styles/App.scss';
 import '../assets/styles/components/Home.scss';
 
-const Home = ({ characters, page }) => {
+const Home = props => {
+  const { characters, isLoading, fetchCharacters } = props;
   useEffect(() => {
-    getCharacters(store.dispatch, moreCharacters, page);
+    fetchCharacters();
   }, []);
-
+  console.log(characters.length);
   return (
-    <div>
+    <>
       <Hero />
       <CardsGridController customClass='controllers-container--top' />
       <CardsGrid>
+        {isLoading ? <h2>Loading... </h2> : ''}
         {characters.map(card => (
           <Card
             key={card.id}
@@ -35,16 +35,24 @@ const Home = ({ characters, page }) => {
           />
         ))}
       </CardsGrid>
-      <CardsGridController customClass='controllers-container--bottom' />
-    </div>
+      {characters.length > 6 ? (
+        <CardsGridController customClass='controllers-container--bottom' />
+      ) : (
+        ''
+      )}
+    </>
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ characters, isLoading }) => {
   return {
-    characters: state.characters,
-    page: state.page,
+    characters,
+    isLoading,
   };
 };
 
-export default connect(mapStateToProps, null)(Home);
+const mapDispatchtoProps = {
+  fetchCharacters,
+};
+
+export default connect(mapStateToProps, mapDispatchtoProps)(Home);

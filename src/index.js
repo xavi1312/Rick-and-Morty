@@ -2,17 +2,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
 // Components
 import Home from './containers/Home';
 // Utilities
-import reducer from './reducers/reducers';
-
-const initialState = {
-  page: 1,
-  characters: [],
-};
-export const store = createStore(reducer, initialState);
+import { store } from './configureStore';
 
 ReactDOM.render(
   <Provider store={store}>
