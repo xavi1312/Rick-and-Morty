@@ -8,7 +8,7 @@ $card-radius: 8px;
   flex-wrap: wrap;
   border-radius: $card-radius;
   background-color: $secondary-color;
-  @extend box-shadow;
+  @extend %box-shadow;
 }
 .card__header {
   width: 100%;

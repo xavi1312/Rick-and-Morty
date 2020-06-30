@@ -20,13 +20,15 @@ const reducerCharacter = (state = initialState, action) => {
         isLoading: true,
       };
     case FETCH_CHARACTERS_SUCCESS:
-      const { apiRes } = action.payload;
+      const apiRes = action.payload.data;
       const newCharacters = apiRes.results;
 
       return {
         ...state,
+        prev: apiRes.info.prev,
+        next: apiRes.info.next,
         isLoading: false,
-        characters: [...state.characters, ...newCharacters],
+        characters: [...newCharacters],
       };
     case FETCH_CHARACTERS_FAILURE:
       console.error(action.payload.error);

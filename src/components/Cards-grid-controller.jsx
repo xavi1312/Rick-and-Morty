@@ -1,20 +1,47 @@
 import React from 'react';
 //  Utilities
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { fetchCharacters } from '../actions';
+import { connect } from 'react-redux';
 // Assets
 import '../assets/styles/components/Cards-grid-controller.scss';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { composeURLwithName } from '../api/characters';
 
-const CardsGridController = ({ customClass = '' }) => {
+const CardsGridController = ({
+  customClass = '',
+  prev,
+  next,
+  fetchCharacters,
+}) => {
+  const handleClickPrev = () => {
+    if (prev != null) fetchCharacters(prev);
+  };
+  const handleClickNext = () => {
+    if (next != null) fetchCharacters(next);
+  };
+  const handleChangeSearchBox = event => {
+    const searchValue = event.target.value;
+    if (searchValue.length > 3) {
+      const url = composeURLwithName(searchValue);
+      fetchCharacters(url);
+    } else if (searchValue.length === 0) fetchCharacters();
+  };
+
   return (
     <div className={`controllers-container ${customClass}`}>
       <section className='controllers'>
-        <button className='btn btn--prev'>
+        <button className='btn btn--prev' onClick={() => handleClickPrev()}>
           <FontAwesomeIcon icon={faChevronLeft} />
         </button>
-        <input type='text' className='searchBox' placeholder='🔍' />
-        <button className='btn btn--next'>
+        <input
+          type='text'
+          className='searchBox'
+          placeholder='🔍'
+          onChange={handleChangeSearchBox}
+        />
+        <button className='btn btn--next' onClick={() => handleClickNext()}>
           <FontAwesomeIcon icon={faChevronRight} />
         </button>
       </section>
@@ -22,4 +49,18 @@ const CardsGridController = ({ customClass = '' }) => {
   );
 };
 
-export default CardsGridController;
+const mapStateToProps = ({ prev, current, next }) => {
+  return {
+    prev,
+    next,
+  };
+};
+
+const mapDispatchToProps = {
+  fetchCharacters,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CardsGridController);

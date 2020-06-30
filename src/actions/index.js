@@ -6,9 +6,9 @@ export const fetcCharacterBegin = () => ({
 });
 
 export const FETCH_CHARACTERS_SUCCESS = 'FETCH_CHARACTERS_SUCCESS';
-export const fetchCharacterSuccess = apiRes => ({
+export const fetchCharacterSuccess = payload => ({
   type: FETCH_CHARACTERS_SUCCESS,
-  payload: { apiRes },
+  payload,
 });
 
 export const FETCH_CHARACTERS_FAILURE = 'FETCH_CHARACTERS_FAILURE';
@@ -21,7 +21,9 @@ export const fetchCharacters = url => {
   return dispatch => {
     dispatch(fetcCharacterBegin());
     return getCharacters(url)
-      .then(data => dispatch(fetchCharacterSuccess(data)))
+      .then(data => {
+        dispatch(fetchCharacterSuccess({ data, url }));
+      })
       .catch(error => dispatch(fetchCharactersFailure(error)));
   };
 };

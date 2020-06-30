@@ -16,7 +16,7 @@ const Home = props => {
   useEffect(() => {
     fetchCharacters();
   }, []);
-  console.log(characters.length);
+
   return (
     <>
       <Hero />
