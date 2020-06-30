@@ -1,5 +1,6 @@
-@import "../Variables.scss";
-@import "../Mixins.scss";
+@import '../Variables.scss';
+@import '../Mixins.scss';
+@import '../Placeholders.scss';
 
 $card-radius: 8px;
 .card {
@@ -7,7 +8,7 @@ $card-radius: 8px;
   flex-wrap: wrap;
   border-radius: $card-radius;
   background-color: $secondary-color;
-  box-shadow: -2px -2px 10px -2px #171b23, 2px 2px 10px 2px #171b23;
+  @extend box-shadow;
 }
 .card__header {
   width: 100%;
@@ -69,6 +70,6 @@ $card-radius: 8px;
   .card__image {
     max-height: none;
     height: 100%;
-    border-radius: 0 0 $card-radius $card-radius;
+    border-radius: $card-radius 0 0 $card-radius;
   }
 }

@@ -1,0 +1,43 @@
+@import '../Placeholders.scss';
+
+.controllers-container {
+  display: flex;
+  justify-content: center;
+}
+.controllers {
+  width: 60%;
+  min-width: 350px;
+  max-width: 700px;
+
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 8px;
+}
+.btn {
+  font-size: 18px;
+
+  padding: 0.6em 0.7em;
+
+  background-color: #262c3a;
+  color: #fff;
+
+  outline: none;
+  border: none;
+  border-radius: 4px;
+
+  @extend %box-shadow;
+
+  &:active {
+    @extend %inset-box-shadow;
+  }
+}
+.searchBox {
+  padding-left: 5px;
+
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  height: 75%;
+  text-align: center;
+}

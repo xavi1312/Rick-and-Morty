@@ -6,19 +6,22 @@ import { getCharacters } from '../utils/rickAndMortyAPI';
 import { store } from '../index';
 // Components
 import Hero from '../components/Hero';
+import CardsGridController from '../components/Cards-grid-controller';
 import CardsGrid from '../components/Cards-grid';
 import Card from '../components/Card';
 // Assets
 import '../assets/styles/App.scss';
+import '../assets/styles/components/Home.scss';
 
-const Home = ({ characters }) => {
+const Home = ({ characters, page }) => {
   useEffect(() => {
-    getCharacters(store.dispatch, moreCharacters);
+    getCharacters(store.dispatch, moreCharacters, page);
   }, []);
 
   return (
     <div>
       <Hero />
+      <CardsGridController customClass='controllers-container--top' />
       <CardsGrid>
         {characters.map(card => (
           <Card
@@ -32,6 +35,7 @@ const Home = ({ characters }) => {
           />
         ))}
       </CardsGrid>
+      <CardsGridController customClass='controllers-container--bottom' />
     </div>
   );
 };
@@ -39,6 +43,7 @@ const Home = ({ characters }) => {
 const mapStateToProps = state => {
   return {
     characters: state.characters,
+    page: state.page,
   };
 };
 

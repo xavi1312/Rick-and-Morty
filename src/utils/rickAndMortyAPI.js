@@ -1,5 +1,15 @@
-export const getCharacters = async (dispatch, moreCharacters) => {
-  const res = await fetch('https://rickandmortyapi.com/api/character/');
-  const data = await res.json();
-  return dispatch(moreCharacters(data.results));
+export const getCharacters = async (dispatch, moreCharacters, page, name) => {
+  try {
+    const url = `https://rickandmortyapi.com/api/character/?page=${page}`;
+    const res = await fetch(url);
+    const data = await res.json();
+
+    console.group('API request:');
+    console.log(data);
+    console.groupEnd();
+
+    return dispatch(moreCharacters(data.results));
+  } catch {
+    console.error(error);
+  }
 };

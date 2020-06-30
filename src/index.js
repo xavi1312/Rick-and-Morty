@@ -9,6 +9,7 @@ import Home from './containers/Home';
 import reducer from './reducers/reducers';
 
 const initialState = {
+  page: 1,
   characters: [],
 };
 export const store = createStore(reducer, initialState);
