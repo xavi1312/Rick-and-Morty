@@ -1,4 +1,6 @@
 import React from 'react';
+//  Components
+import Spinner from '../components/Spinner';
 //  Utilities
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { fetchCharacters } from '../actions';
@@ -14,7 +16,12 @@ const CardsGridController = ({
   prev,
   next,
   fetchCharacters,
+  isLoading,
 }) => {
+  const spinnerStyles = {
+    fontSize: '2px',
+  };
+
   const handleClickPrev = () => {
     if (prev != null) fetchCharacters(prev);
   };
@@ -42,14 +49,16 @@ const CardsGridController = ({
         <button className='btn btn--next' onClick={() => handleClickNext()}>
           <FontAwesomeIcon icon={faChevronRight} />
         </button>
+        {isLoading ? <Spinner styles={spinnerStyles} /> : ''}
       </section>
     </div>
   );
 };
 
-const mapStateToProps = ({ prev, current, next }) => {
+const mapStateToProps = ({ prev, isLoading, next }) => {
   return {
     prev,
+    isLoading,
     next,
   };
 };

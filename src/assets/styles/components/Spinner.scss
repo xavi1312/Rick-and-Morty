@@ -1,0 +1,47 @@
+@import '../Variables.scss';
+
+.spinnerLoader {
+  content: '';
+  display: inline-block;
+
+  width: 10em;
+  height: 10em;
+
+  border: 1.2em solid darken($blue, 60%);
+  border-right-color: rgba(0, 64, 128, 0) !important;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+
+  font-size: 6.2px;
+
+  transform: translateZ(0);
+  transition: border 100ms linear;
+  animation: spiner 1.2s infinite cubic-bezier(0.53, 0.21, 0.57, 0.85),
+    colors 3s infinite cubic-bezier(0.45, -0.03, 1, 0.77);
+}
+
+@keyframes colors {
+  0% {
+    border-color: darken($blue, 30%);
+  }
+  25% {
+    border-color: darken($blue, 20%);
+  }
+  50% {
+    border-color: darken($blue, 10%);
+  }
+  75% {
+    border-color: $blue;
+  }
+  100% {
+    border-color: darken($blue, 30%);
+  }
+}
+@keyframes spiner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(720deg);
+  }
+}

@@ -12,7 +12,7 @@ import '../assets/styles/App.scss';
 import '../assets/styles/components/Home.scss';
 
 const Home = props => {
-  const { characters, isLoading, fetchCharacters } = props;
+  const { characters, fetchCharacters } = props;
   useEffect(() => {
     fetchCharacters();
   }, []);
@@ -22,7 +22,6 @@ const Home = props => {
       <Hero />
       <CardsGridController customClass='controllers-container--top' />
       <CardsGrid>
-        {isLoading ? <h2>Loading... </h2> : ''}
         {characters.map(card => (
           <Card
             key={card.id}
@@ -44,10 +43,9 @@ const Home = props => {
   );
 };
 
-const mapStateToProps = ({ characters, isLoading }) => {
+const mapStateToProps = ({ characters }) => {
   return {
     characters,
-    isLoading,
   };
 };
 

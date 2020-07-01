@@ -3,14 +3,15 @@
 .controllers-container {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 .controllers {
   width: 60%;
-  min-width: 350px;
+  min-width: 300px;
   max-width: 700px;
 
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto minmax(203px, 1fr) auto auto;
   align-items: center;
   gap: 8px;
 }
