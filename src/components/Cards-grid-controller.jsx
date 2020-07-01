@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 //  Components
 import Spinner from '../components/Spinner';
 //  Utilities
@@ -37,7 +37,11 @@ const CardsGridController = ({
   return (
     <div className={`controllers-container ${customClass}`}>
       <section className='controllers'>
-        <button className='btn btn--prev' onClick={() => handleClickPrev()}>
+        <button
+          className='btn btn--prev'
+          onClick={() => handleClickPrev()}
+          disabled={prev === null}
+        >
           <FontAwesomeIcon icon={faChevronLeft} />
         </button>
         <input
@@ -46,7 +50,11 @@ const CardsGridController = ({
           placeholder='🔍'
           onChange={handleChangeSearchBox}
         />
-        <button className='btn btn--next' onClick={() => handleClickNext()}>
+        <button
+          className='btn btn--next'
+          onClick={() => handleClickNext()}
+          disabled={next === null}
+        >
           <FontAwesomeIcon icon={faChevronRight} />
         </button>
         {isLoading ? <Spinner styles={spinnerStyles} /> : ''}
