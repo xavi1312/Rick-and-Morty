@@ -23,10 +23,8 @@ const CardsGridController = ({
   };
   const handleChangeSearchBox = event => {
     const searchValue = event.target.value;
-    if (searchValue.length > 3) {
-      const url = composeURLwithName(searchValue);
-      fetchCharacters(url);
-    } else if (searchValue.length === 0) fetchCharacters();
+    const url = composeURLwithName(searchValue);
+    fetchCharacters(url);
   };
 
   return (

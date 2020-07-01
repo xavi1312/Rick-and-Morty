@@ -32,7 +32,15 @@ const reducerCharacter = (state = initialState, action) => {
       };
     case FETCH_CHARACTERS_FAILURE:
       console.error(action.payload.error);
-      return { ...state, isLoading: false };
+      const errorStatus = action.payload.error.status;
+
+      switch (errorStatus) {
+        case 404:
+          return { ...state, characters: [], isLoading: false };
+        default:
+          return { ...state, isLoading: false };
+      }
+
     default:
       return state;
   }

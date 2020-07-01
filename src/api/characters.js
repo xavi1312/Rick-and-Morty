@@ -5,10 +5,14 @@ const serviceName = 'Characters';
 
 export const getCharacters = (url = baseURL) => {
   return fetch(url)
-    .then(res => handleErrorsToFetchingAPI(res, serviceName))
+    .then(res => {
+      return handleErrorsToFetchingAPI(res, serviceName);
+    })
     .then(res => res.json());
 };
 
 export const composeURLwithName = (name, url = baseURL) => {
-  return `${url}/?name=${name}`;
+  return name === undefined || name === null || name === ''
+    ? url
+    : `${url}/?name=${name}`;
 };
