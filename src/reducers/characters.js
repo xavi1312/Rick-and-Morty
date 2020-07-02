@@ -3,7 +3,6 @@ import {
   FETCH_CHARACTERS_BEGIN,
   FETCH_CHARACTERS_FAILURE,
 } from '../actions';
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 const initialState = {
   isLoading: false,
@@ -36,7 +35,13 @@ const reducerCharacter = (state = initialState, action) => {
 
       switch (errorStatus) {
         case 404:
-          return { ...state, characters: [], isLoading: false };
+          return {
+            ...state,
+            characters: [],
+            isLoading: false,
+            prev: null,
+            next: null,
+          };
         default:
           return { ...state, isLoading: false };
       }
